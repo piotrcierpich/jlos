@@ -10,14 +10,21 @@
     flex: 1;
 }
 
-.flexbox .flex_col_1 { 
+.flexbox .empty_left_flex_col_0 { 
+    flex-basis: 130px;
     -webkit-order: 0;
         -ms-flex-order: 0;
             order: 0;
 }
 
-.flexbox .flex_col_2 { 
+.flexbox .flex_col_1 { 
     -webkit-order: 1; 
         -ms-flex-order: 1; 
             order: 1;
+}
+
+.flexbox .flex_col_2 { 
+    -webkit-order: 2; 
+        -ms-flex-order: 2; 
+            order: 2;
 }

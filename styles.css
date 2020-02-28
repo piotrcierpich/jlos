@@ -8,9 +8,13 @@ body {
 }
 
 #main {
-    width: 960px;
+    width: 1080px;
     background-color: #552f0e;
     margin: 10px auto;
+}
+
+.empty {
+    width: 10px;
 }
 
 .about {
