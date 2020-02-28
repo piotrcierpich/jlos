@@ -1,0 +1,94 @@
+body {
+    background-color: #552f0e;
+    line-height: 1; 
+    color: #434343; 
+    font-family: Georgia, Cambria, Times new roman, serif;  
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+#main {
+    width: 960px;
+    background-color: #552f0e;
+    margin: 10px auto;
+}
+
+.about {
+    margin: 1%;
+    float: left;
+    width: 650px;
+    background-color: #faf5f3;
+}
+
+#about-banner {
+    background-image: url("images/losbaner.jpg");
+    height: 335px;
+    width: 650px;
+}
+
+#about-logo {
+    position: relative;
+    top: 30px;
+    left:-120px;
+    background-color: #847520;
+    width: 215px;
+    padding: 5px 10px;
+    box-shadow: 0 0 20px #332008;
+}
+
+#nav {
+    list-style: none;
+    position:relative;
+    top: 170px;
+    color: #ffffff;
+    margin-top: 0px;
+    padding: 0px 10px 0px 10px;
+}
+
+#nav li {
+    font-family: Tahoma, "Helvetica Neue", Arial, Helvetica, sans-serif;
+    font-weight: 500;
+    margin: 2px;
+    display:inline;
+}
+
+#nav li a {
+    padding: 4px 12px;
+}
+
+#nav li a:hover {
+    background-color: #ffffff;
+    color: #000;
+    border-radius: 5px;
+  }
+
+.about-content {
+    padding: 12px;
+}
+
+.news {
+    margin: 1%;
+    float: left;
+    width: 25%;
+    background-color: #faf5f3;
+    padding: 1%;
+    min-width: 220px;
+}
+
+.news h2 {
+    font-size: 14px;
+    display: block;
+    border-bottom: 1px solid #dbdbdb;
+    padding: 3px;
+}
+
+.news p {
+    border-bottom: 1px solid #dbdbdb;
+    padding: 3px;
+    font-size: 12px;
+    text-align: justify;
+}
+
+.light-shadow {
+    box-shadow: 0 0 7px #e3ded6;
+}
