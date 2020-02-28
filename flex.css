@@ -1,0 +1,23 @@
+
+.flexbox {      
+    display: -webkit-flex;        
+    display: -ms-flexbox;     
+    display: flex;
+    overflow: hidden;
+}
+
+.flexbox .col {
+    flex: 1;
+}
+
+.flexbox .flex_col_1 { 
+    -webkit-order: 0;
+        -ms-flex-order: 0;
+            order: 0;
+}
+
+.flexbox .flex_col_2 { 
+    -webkit-order: 1; 
+        -ms-flex-order: 1; 
+            order: 1;
+}
