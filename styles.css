@@ -111,14 +111,15 @@ body {
     box-shadow: 0 0 7px #e3ded6;
 }
 
-.ribbon-edge-topleft {
-	top: 0px;
-	border-width: 10px 10px 0 0;
-    left: -22px;
-    border-color: transparent #5a5016 transparent transparent;
+.ribbon-side {
+    font-family: Tahoma, "Helvetica Neue", Arial, Helvetica, sans-serif;
+    float: right;
     position: relative;
-    z-index: 1;
-    border-style:solid;
-    height:0px;
-    width:0px;
+    right: -22px;
+    min-height: 24px;
+    max-width: 180px;
+    background-color: #847520;
+    color: #ffffff;
+    padding: 0px 7px;
+    font-size: 13px;
 }
