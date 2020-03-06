@@ -1,22 +1,21 @@
-
 .small-ribbon-edge-topright {
     position: relative;
     z-index: 1;
-    border-style:solid;
+    border-style: solid;
     right: -294px;
     border-width: 5px 0 0 10px;
     border-color: transparent transparent transparent #5a5016;
-  }
-
+}
 
 .ribbon-edge-topleft {
-	top: 0px;
-	border-width: 10px 10px 0 0;
-    left: -22px;
+    top: 0px;
+    border-width: 10px 10px 0 0;    
     border-color: transparent #5a5016 transparent transparent;
     position: relative;
     z-index: 1;
-    border-style:solid;
-    height:0px;
-    width:0px;
+    border-style: solid;
+    height: 0px;
+    width: 0px;
+    left: -32px;
+    top: -2px;
 }

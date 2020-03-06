@@ -1,0 +1,17 @@
+#pageContainer {
+    width: 970px;
+    background-color: #faf5f3;
+    margin: 20px auto;
+}
+#pageContainer #banner {
+    background-image: url("images/LosBanerSzeroki.jpg");
+    width: 970px;
+    height: 340px;
+}
+
+#banner #nav {
+    width: 650px;
+    position: relative;
+    top: 175px;
+    margin: 0px auto;
+}
