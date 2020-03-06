@@ -1,0 +1,40 @@
+.article-published {
+    color: #999;
+    font-size: 11px;
+}
+
+.page-content ul {
+    padding-inline-start: 0px;
+    margin: 10px 0px 0px 0px;
+}
+
+.page-content ul :first-child article {
+    border: none;
+}
+
+.page-content ul article {
+    border-top: 1px solid #dbdbdb;
+    padding: 6px 0px;
+}
+
+.page-content ul article header {
+    font-size: 18px;
+}
+
+.page-content li {
+    list-style: none;
+}
+
+.page-content li p {
+    margin: 10px;
+}
+
+#other-page-link {
+    margin: 0px auto;
+    width: 200px;
+}
+
+#other-page-link a {
+    color: #847520;
+    padding-right: 25px;
+}
