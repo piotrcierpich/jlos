@@ -8,6 +8,7 @@
         <link rel="stylesheet" type="text/css" href="ribbon.css" />
         <link rel="stylesheet" type="text/css" href="gallery.css" />
         <link rel="stylesheet" type="text/css" href="paginable.css" />
+        <link rel="stylesheet" type="text/css" href="lightbox.min.css" />
     </head>
 
     <body>
@@ -34,49 +35,54 @@
                 </div>
                 <div id="pictures-container">
                     <div class="entry">
-                        <img src="./images/gallery/small.jpeg" />
+                        <a href="images/gallery/image1.jpeg" data-lightbox="image-set" >
+                            <img src="./images/gallery/small1.jpeg" />
+                        </a>
                     </div>
                     <div class="entry">
-                        <img src="./images/gallery/small.jpeg" />
+                        <a href="images/gallery/image2.jpeg" data-lightbox="image-set" >
+                            <img src="./images/gallery/small2.jpeg" />
+                        </a>
                     </div>
                     <div class="entry">
-                        <img src="./images/gallery/small.jpeg" />
+                        <a href="images/gallery/image1.jpeg" data-lightbox="image-set" >
+                            <img src="./images/gallery/small1.jpeg" />
+                        </a>
                     </div>
                     <div class="entry">
-                        <img src="./images/gallery/small.jpeg" />
+                        <a href="images/gallery/image2.jpeg" data-lightbox="image-set" >
+                            <img src="./images/gallery/small2.jpeg" />
+                        </a>
                     </div>
                     <div class="entry">
-                        <img src="./images/gallery/small.jpeg" />
+                        <a href="images/gallery/image1.jpeg" data-lightbox="image-set" >
+                            <img src="./images/gallery/small1.jpeg" />
+                        </a>
                     </div>
                     <div class="entry">
-                        <img src="./images/gallery/small.jpeg" />
+                        <a href="images/gallery/image2.jpeg" data-lightbox="image-set" >
+                            <img src="./images/gallery/small2.jpeg" />
+                        </a>
                     </div>
                     <div class="entry">
-                        <img src="./images/gallery/small.jpeg" />
+                        <a href="images/gallery/image1.jpeg" data-lightbox="image-set" >
+                            <img src="./images/gallery/small1.jpeg" />
+                        </a>
                     </div>
                     <div class="entry">
-                        <img src="./images/gallery/small.jpeg" />
+                        <a href="images/gallery/image2.jpeg" data-lightbox="image-set" >
+                            <img src="./images/gallery/small2.jpeg" />
+                        </a>
                     </div>
                     <div class="entry">
-                        <img src="./images/gallery/small.jpeg" />
+                        <a href="images/gallery/image1.jpeg" data-lightbox="image-set" >
+                            <img src="./images/gallery/small1.jpeg" />
+                        </a>
                     </div>
                     <div class="entry">
-                        <img src="./images/gallery/small.jpeg" />
-                    </div>
-                    <div class="entry">
-                        <img src="./images/gallery/small.jpeg" />
-                    </div>
-                    <div class="entry">
-                        <img src="./images/gallery/small.jpeg" />
-                    </div>
-                    <div class="entry">
-                        <img src="./images/gallery/small.jpeg" />
-                    </div>
-                    <div class="entry">
-                        <img src="./images/gallery/small.jpeg" />
-                    </div>
-                    <div class="entry">
-                        <img src="./images/gallery/small.jpeg" />
+                        <a href="images/gallery/image2.jpeg" data-lightbox="image-set" >
+                            <img src="./images/gallery/small2.jpeg" />
+                        </a>
                     </div>
                 </div>
                 <div id="other-page-link">
@@ -85,5 +91,13 @@
                 </div>
             </div>
         </div>
+
+        <script src="scripts/lightbox-plus-jquery.min.js"></script>
+
+        <script type="text/javascript">
+            lightbox.option({
+                albumLabel: "Zdjęcie %1 z %2"
+            });
+        </script>
     </body>
 </html>
