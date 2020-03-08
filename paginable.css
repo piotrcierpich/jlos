@@ -1,0 +1,9 @@
+#other-page-link {
+    margin: 0px auto;
+    width: 200px;
+}
+
+#other-page-link a {
+    color: #847520;
+    padding-right: 25px;
+}

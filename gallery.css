@@ -1,0 +1,21 @@
+/* needed due to all floating children */
+#pictures-container {
+    overflow: auto;
+    margin-bottom: 10px;
+}
+
+.entry {
+    float: left;
+    margin: 21px;
+    padding: 5px;
+    border: 1px solid transparent;
+}
+
+.entry:hover {
+    border: 1px grey solid;
+}
+
+.entry img {
+    margin: 0px auto;
+    display: block; /* to center image */
+}
