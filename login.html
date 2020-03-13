@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pl">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Koło łowieckie Łoś</title>
+        <link rel="stylesheet" type="text/css" href="mainStyles.css" />
+        <link rel="stylesheet" type="text/css" href="article.css" />
+        <link rel="stylesheet" type="text/css" href="ribbon.css" />
+        <link rel="stylesheet" type="text/css" href="login.css" />
+    </head>
+
+    <body>
+        <div id="pageContainer" class="light-shadow">
+            <div id="banner">
+                <div id="about-logo">
+                    <a href="./">
+                        <img src="images/logow.png" />
+                    </a>
+                </div>
+                <ul id="nav">
+                    <li><a>Strona główna</a></li>
+                    <li><a>Aktualności</a></li>
+                    <li><a>Uchwały</a></li>
+                    <li><a>Historia koła</a></li>
+                    <li><a>Galeria</a></li>
+                    <li><a>Kontakt</a></li>
+                </ul>
+            </div>
+            <div class="page-content" action="login">
+                <div class="ribbon-edge-topleft"></div>
+                <div class="title">
+                    Zaloguj się
+                </div>
+                <div id="labelContainer">
+                    <form method="POST">
+                        <div class="form-data">
+                            <label for="login">Nazwa użytkownika:</label>
+                            <input id="login" type="text" class="input-data" />
+                        </div>
+                        <div class="form-data">
+                            <label for="password">Hasło:</label>
+                            <input id="password" type="password" class="input-data" />
+                        </div>
+                        <div class="form-data">
+                            <input type="submit" value="Zaloguj" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

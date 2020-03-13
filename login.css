@@ -1,0 +1,28 @@
+#labelContainer {
+    margin: 10px;
+    width: 300px;
+}
+
+.form-data {
+    margin: 3px;
+    padding: 5px;
+}
+
+.input-data {
+    width: 100%;
+}
+
+form div label {
+    float: left;
+    width: 100%;
+}
+
+input {
+    line-height: 1.5em;
+}
+
+input[type="submit"] {
+    display: block;
+    margin: 0px auto;
+    padding: 5px 15px;
+}
