@@ -1,0 +1,11 @@
+.content-field {
+    margin: 15px;
+}
+
+.content-field label {
+    display: block;
+}
+
+.content-field input[type="text"] {
+    width: 500px;
+}

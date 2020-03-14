@@ -1,0 +1,22 @@
+#content table {
+    margin: 0px auto;
+    padding: 20px 5px;
+    width: 85%;
+    border-spacing: 0px;
+}
+
+#content table th {
+    text-align: center;
+    padding: 5px 10px;
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+}
+
+td {
+    padding: 3px 5px;
+    border-bottom: 1px solid #bbbbbb;
+}
+
+.publish-date {
+    text-align: center;
+}

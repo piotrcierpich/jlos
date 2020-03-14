@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pl">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Koło łowieckie Łoś</title>
+        <link rel="stylesheet" type="text/css" href="admin.css" />
+        <link rel="stylesheet" type="text/css" href="adminArticle.css" />
+        <link
+            href="https://cdn.quilljs.com/1.3.6/quill.snow.css"
+            rel="stylesheet"
+        />
+    </head>
+    <body>
+        <div id="nav">
+            <ul>
+                <li><a href="">Strona główna</a></li>
+                <li><a href="">Aktualności</a></li>
+                <li><a href="">Uchwały</a></li>
+                <li><a href="">Historia koła</a></li>
+                <li><a href="">Galeria</a></li>
+                <li><a href="">Kontakt</a></li>
+            </ul>
+        </div>
+        <div id="content">
+            <div class="content-field">
+                <label for="title">Tytuł:</label>
+                <input type="text" id="title" />
+            </div>
+            <div class="content-field">
+                <label for="link">Link:</label>
+                <input type="text" id="link" />
+            </div>
+            <div class="content-field">
+                <div id="editor-container"></div>
+                <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+            </div>
+
+            <div class="content-field">
+                <label for="publishDatetime">Data i godzina publikacji</label>
+                <input type="date" id="publishDatetime" />
+            </div>
+            <div class="content-field">
+                <button type="submit">Zapisz</button>
+            </div>
+
+            <script>
+                var quill = new Quill("#editor-container", {
+                    theme: "snow"
+                });
+            </script>
+        </div>
+    </body>
+</html>
