@@ -44,11 +44,26 @@
     padding: 3px;
 }
 
-.news p {
+.news .abstract-title {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.news .abstract-title:hover {
+    text-decoration: underline;
+}
+
+.news-article {
     border-bottom: 1px solid #dbdbdb;
     padding: 3px;
     font-size: 12px;
     text-align: justify;
+    margin: 12px 0px;
+}
+
+.news-article p {
+    margin: 0px;
+    display: inline;
 }
 
 .ribbon-side {

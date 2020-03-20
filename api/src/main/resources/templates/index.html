@@ -4,77 +4,55 @@
 <head>
     <meta charset="UTF-8">
     <title>Koło łowieckie Łoś</title>
-    <link rel="stylesheet" type="text/css" href="styles.css" />
-    <link rel="stylesheet" type="text/css" href="mainStyles.css" />
-    <link rel="stylesheet" type="text/css" href="flex.css" />
-    <link rel="stylesheet" type="text/css" href="ribbon.css" />
+    <link rel="stylesheet" type="text/css" href="styles.css"/>
+    <link rel="stylesheet" type="text/css" href="mainStyles.css"/>
+    <link rel="stylesheet" type="text/css" href="flex.css"/>
+    <link rel="stylesheet" type="text/css" href="ribbon.css"/>
 </head>
 
 <body>
-    <div id="mainContent" class="flexbox">
-        <div class="empty empty_left_flex_col_0" ></div>
-        <div class="about light-shadow col col_1">
-            <div id="about-banner">
-                <div id="about-logo">
-                    <a href="./">
-                        <img src="images/logow.png" />
-                    </a>
-                </div>
-                <ul id="nav">
-                    <li><a>Strona główna</a></li>
-                    <li><a>Aktualności</a></li>
-                    <li><a>Uchwały</a></li>
-                    <li><a>Historia koła</a></li>
-                    <li><a>Galeria</a></li>
-                    <li><a>Kontakt</a></li>
-                </ul>
+<div id="mainContent" class="flexbox">
+    <div class="empty empty_left_flex_col_0"></div>
+    <div class="about light-shadow col col_1">
+        <div id="about-banner">
+            <div id="about-logo">
+                <a href="./">
+                    <img src="images/logow.png"/>
+                </a>
             </div>
-            <div class="page-content">
-                <div class="ribbon-edge-topleft"></div>
-                <div class="title">
-                    O kole łowieckim
-                </div>
-                <p th:text="${mainPageText}" />
+            <ul id="nav">
+                <li><a>Strona główna</a></li>
+                <li><a>Aktualności</a></li>
+                <li><a>Uchwały</a></li>
+                <li><a>Historia koła</a></li>
+                <li><a>Galeria</a></li>
+                <li><a>Kontakt</a></li>
+            </ul>
+        </div>
+        <div class="page-content">
+            <div class="ribbon-edge-topleft"></div>
+            <div class="title">
+                O kole łowieckim
             </div>
+            <p th:text="${mainPageText}"/>
         </div>
+    </div>
 
-        <div class="news light-shadow col col_2">
-            <h2>Aktualności</h2>
-            <div>
-                <div class="small-ribbon-edge-topright"></div>
-                <div class="ribbon-side dark-shadow">
-                    Interesting article 1 
-                </div>
-            <p th:text="${shortPageText}">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                et dolore magna aliqua. Elementum integer enim neque volutpat. Non quam lacus suspendisse faucibus interdum. Sollicitudin ac orci
-                phasellus egestas tellus. Diam ut venenatis tellus in ...</p>
-
-            </div>           
-            <div>
-                <div class="small-ribbon-edge-topright"></div>
-                <div class="ribbon-side dark-shadow">
-                    Interesting article 2
-                </div>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                et dolore magna aliqua. Elementum integer enim neque volutpat. Non quam lacus suspendisse faucibus interdum. Sollicitudin ac orci
-                phasellus egestas tellus. Diam ut venenatis tellus in ...<a href="">więcej</a>
-            </p>
-        </div>
-        <div>
+    <div class="news light-shadow col col_2">
+        <h2>Aktualności</h2>
+        <div th:each="abstract : ${abstracts}">
             <div class="small-ribbon-edge-topright"></div>
             <div class="ribbon-side dark-shadow">
-                Interesting article 3 with long long title
+                <a class="abstract-title" th:text="${abstract.title}" th:href="@{/aktualnosci/{id}(id=${abstract.link})}">Interesting article 1</a>
             </div>
-            <p>
+            <div class="news-article"><span th:text="${abstract.content}">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                et dolore magna aliqua. Elementum integer enim neque volutpat. Non quam lacus suspendisse faucibus interdum. Sollicitudin ac orci
-                phasellus egestas tellus. Diam ut venenatis tellus in ...<a href="">więcej</a>
-            </p>
+                et dolore magna aliqua. Elementum integer enim neque volutpat. Non quam lacus suspendisse faucibus
+                interdum. Sollicitudin ac orci
+                phasellus egestas tellus. Diam ut venenatis tellus in ...</span><a href="">więcej</a></div>
         </div>
-            <h2>Ostatnia galeria</h2>
-        </div>
+        <h2>Ostatnia galeria</h2>
+    </div>
 </body>
 
 </html>

@@ -4,7 +4,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import pl.kololos.api.models.ArticleAbstract;
 import pl.kololos.api.utils.ResourceFileReader;
+
+import java.util.List;
+import java.util.stream.IntStream;
+
+import static java.util.stream.Collectors.toList;
 
 @Controller
 public class IndexController {
@@ -25,7 +31,11 @@ public class IndexController {
     @GetMapping("/")
     public String index(Model model) {
         model.addAttribute("mainPageText", longText);
-        model.addAttribute("shortPageText", shortText);
+        List<ArticleAbstract> abstracts = IntStream.range(1, 4)
+                .boxed()
+                .map(i -> new ArticleAbstract("Interesting subject " + i, shortText, "123"))
+                .collect(toList());
+        model.addAttribute("abstracts", abstracts);
         return "index";
     }
 
