@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -34,26 +34,7 @@
                 <div class="title">
                     O kole łowieckim
                 </div>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                    et dolore magna aliqua. Elementum integer enim neque volutpat. Blandit cursus risus at ultrices.
-                    Lectus mauris ultrices eros in cursus turpis massa tincidunt dui. Aliquam sem fringilla ut morbi
-                    tincidunt augue interdum velit. 
-                </p>
-                <p>Non quam lacus suspendisse faucibus interdum. Sollicitudin ac orci
-                    phasellus egestas tellus. Diam ut venenatis tellus in metus vulputate eu scelerisque. Interdum
-                    varius sit amet mattis vulputate enim nulla. Suspendisse potenti nullam ac tortor. Lacus vestibulum
-                    sed arcu non odio euismod lacinia at. Tellus in metus vulputate eu scelerisque felis imperdiet
-                    proin. Non consectetur a erat nam at lectus urna duis convallis.
-                    Libero nunc consequat interdum varius. Sagittis id consectetur purus ut. Laoreet sit amet cursus sit
-                    amet dictum. Vivamus at augue eget arcu dictum varius. Nunc faucibus a pellentesque sit amet
-                    porttitor eget dolor morbi. Est pellentesque elit ullamcorper dignissim. Maecenas pharetra convallis
-                    posuere morbi. Nisl nisi scelerisque eu ultrices. Sagittis aliquam malesuada bibendum arcu vitae
-                    elementum. Eu feugiat pretium nibh ipsum consequat nisl vel. Sit amet nulla facilisi morbi tempus
-                    iaculis. Massa vitae tortor condimentum lacinia. Urna porttitor rhoncus dolor purus non enim
-                    praesent elementum. Turpis egestas integer eget aliquet nibh.
-                    Mattis pellentesque id nibh tortor id. 
-                </p>
+                <p th:text="${mainPageText}" />
             </div>
         </div>
 
@@ -64,11 +45,11 @@
                 <div class="ribbon-side dark-shadow">
                     Interesting article 1 
                 </div>
-            <p>
+            <p th:text="${shortPageText}">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
                 et dolore magna aliqua. Elementum integer enim neque volutpat. Non quam lacus suspendisse faucibus interdum. Sollicitudin ac orci
-                phasellus egestas tellus. Diam ut venenatis tellus in ...<a href="">więcej</a>
-            </p> 
+                phasellus egestas tellus. Diam ut venenatis tellus in ...</p>
+
             </div>           
             <div>
                 <div class="small-ribbon-edge-topright"></div>
