@@ -15,69 +15,17 @@
             <div id="banner" th:replace="logoAndNav" />
             <div class="page-content">
                 <div class="ribbon-edge-topleft"></div>
-                <div class="title">
+                <div class="title" th:text="${articles.title}">
                     Lorem ipsum dolor sit amet
                 </div>
                 <ul>
-                    <li style="list-style: none;">
+                    <li th:each="abstract : ${articles.abstracts}">
                         <article>
-                            <header>Lorem ipsum dolor sit amet, consectetur adipiscing elit</header>
-                            <div class="article-published">6 marca 2020</div>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit, sed do eiusmod tempor
-                                incididunt ut labore et dolore magna aliqua.
-                                Elementum integer enim neque volutpat. Blandit
-                                cursus risus at ultrices. Lectus mauris ultrices
-                                eros in cursus turpis massa tincidunt dui.
-                                Aliquam sem fringilla ut morbi tincidunt augue
-                                interdum velit.Non quam lacus suspendisse
-                                faucibus interdum. Sollicitudin ac orci
-                                phasellus egestas tellus.
-                            </p>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>Lorem ipsum dolor sit amet, consectetur adipiscing elit</header>
-                            <div class="article-published">6 marca 2020</div>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit, sed do eiusmod tempor
-                                incididunt ut labore et dolore magna aliqua.
-                                Elementum integer enim neque volutpat. Blandit
-                                cursus risus at ultrices. Lectus mauris ultrices
-                                eros in cursus turpis massa tincidunt dui.
-                                Aliquam sem fringilla ut morbi tincidunt augue
-                                interdum velit.Non quam lacus suspendisse
-                                faucibus interdum. Sollicitudin ac orci
-                                phasellus egestas tellus.
-                            </p>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>Lorem ipsum dolor sit amet, consectetur adipiscing elit</header>
-                            <div class="article-published">6 marca 2020</div>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit, sed do eiusmod tempor
-                                incididunt ut labore et dolore magna aliqua.
-                                Elementum integer enim neque volutpat. Blandit
-                                cursus risus at ultrices. Lectus mauris ultrices
-                                eros in cursus turpis massa tincidunt dui.
-                                Aliquam sem fringilla ut morbi tincidunt augue
-                                interdum velit.Non quam lacus suspendisse
-                                faucibus interdum. Sollicitudin ac orci
-                                phasellus egestas tellus.
-                            </p>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>Lorem ipsum dolor sit amet, consectetur adipiscing elit</header>
-                            <div class="article-published">6 marca 2020</div>
-                            <p>
+                            <header>
+                                <a th:href="@{/aktualnosci/{id}(id=${abstract.link})}" th:text="${abstract.title}">Lorem ipsum dolor sit amet, consectetur adipiscing elit</a>
+                            </header>
+                            <div class="article-published" th:text="${abstract.publishDate}">6 marca 2020</div>
+                            <p th:text="${abstract.content}">
                                 Lorem ipsum dolor sit amet, consectetur
                                 adipiscing elit, sed do eiusmod tempor
                                 incididunt ut labore et dolore magna aliqua.

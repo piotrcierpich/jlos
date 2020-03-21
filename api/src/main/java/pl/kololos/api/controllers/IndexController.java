@@ -4,22 +4,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import pl.kololos.api.models.ArticleAbstract;
-import pl.kololos.api.utils.ResourceFileReader;
-
-import java.util.List;
-import java.util.stream.IntStream;
-
-import static java.util.stream.Collectors.toList;
+import pl.kololos.api.services.PageService;
 
 @Controller
 public class IndexController {
-    private final String longText;
-    private final String shortText;
+    private final PageService pageService;
 
-    public IndexController() {
-        longText = ResourceFileReader.readFileContent("/longText.txt");
-        shortText = ResourceFileReader.readFileContent("/shortText.txt");
+    public IndexController(PageService pageService) {
+        this.pageService = pageService;
     }
 
     @GetMapping("/greeting")
@@ -30,17 +22,13 @@ public class IndexController {
 
     @GetMapping("/")
     public String index(Model model) {
-        model.addAttribute("mainPageText", longText);
-        List<ArticleAbstract> abstracts = IntStream.range(1, 4)
-                .boxed()
-                .map(i -> new ArticleAbstract("Interesting subject " + i, shortText, "123"))
-                .collect(toList());
-        model.addAttribute("abstracts", abstracts);
+        model.addAttribute("index", pageService.getIndex());
         return "index";
     }
 
     @GetMapping("/aktualnosci")
-    public String news() {
+    public String articles(Model model) {
+        model.addAttribute("articles", pageService.getArticles());
         return "listFull";
     }
 

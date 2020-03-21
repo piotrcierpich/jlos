@@ -25,6 +25,15 @@
     list-style: none;
 }
 
+.page-content li a {
+    text-decoration: none;
+    color: #434343;
+}
+
+.page-content li a:hover {
+    text-decoration: underline;
+}
+
 .page-content li p {
     margin: 10px;
 }
