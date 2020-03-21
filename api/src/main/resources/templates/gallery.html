@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="UTF-8" />
         <title>Koło łowieckie Łoś</title>
@@ -13,21 +13,7 @@
 
     <body>
         <div id="pageContainer" class="light-shadow">
-            <div id="banner">
-                <div id="about-logo">
-                    <a href="./">
-                        <img src="images/logow.png" />
-                    </a>
-                </div>
-                <ul id="nav">
-                    <li><a>Strona główna</a></li>
-                    <li><a>Aktualności</a></li>
-                    <li><a>Uchwały</a></li>
-                    <li><a>Historia koła</a></li>
-                    <li><a>Galeria</a></li>
-                    <li><a>Kontakt</a></li>
-                </ul>
-            </div>
+            <div id="banner" th:replace="logoAndNav" />
             <div class="page-content">
                 <div class="ribbon-edge-topleft"></div>
                 <div class="title">

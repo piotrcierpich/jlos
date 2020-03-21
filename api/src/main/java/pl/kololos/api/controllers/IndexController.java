@@ -63,4 +63,9 @@ public class IndexController {
     public String contact() {
         return "article";
     }
+
+    @GetMapping("/login")
+    public String login() {
+        return "login";
+    }
 }
