@@ -43,7 +43,8 @@ public class IndexController {
     }
 
     @GetMapping("/galeria")
-    public String gallery() {
+    public String gallery(Model model, @RequestParam(required = false) Integer page) {
+        model.addAttribute("items", pageService.getGalleries(page));
         return "list";
     }
 

@@ -15,44 +15,19 @@
             <div id="banner" th:replace="logoAndNav" />
             <div class="page-content">
                 <div class="ribbon-edge-topleft"></div>
-                <div class="title">
+                <div class="title" th:text="${items.title}">
                     Lorem ipsum dolor sit amet
                 </div>
                 <ul>
-                    <li style="list-style: none;">
+                    <li th:each="item : ${items.itemAbstracts}">
                         <article>
-                            <header>Lorem ipsum dolor sit amet, consectetur adipiscing elit</header>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>Lorem ipsum dolor sit amet, consectetur adipiscing elit</header>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>Lorem ipsum dolor sit amet, consectetur adipiscing elit</header>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>Lorem ipsum dolor sit amet, consectetur adipiscing elit</header>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>Lorem ipsum dolor sit amet, consectetur adipiscing elit</header>
-                        </article>
-                    </li>
-                    <li>
-                        <article>
-                            <header>Lorem ipsum dolor sit amet, consectetur adipiscing elit</header>
+                            <header><a th:href="@{/galeria/{id}(id=${item.link})}" th:text="${item.title}">Lorem ipsum dolor sit amet, consectetur adipiscing elit</a></header>
                         </article>
                     </li>
                 </ul>    
                 <div id="other-page-link">
-                    <a href="">Nowsze</a>
-                    <a href="">Starsze</a>
+                    <a th:href="@{/galeria(page=${items.previousPage})}" th:if="${items.hasPrevious}">Nowsze</a>
+                    <a th:href="@{/galeria(page=${items.nextPage})}" th:if="${items.hasNext}">Starsze</a>
                 </div>            
             </div>
         </div>
