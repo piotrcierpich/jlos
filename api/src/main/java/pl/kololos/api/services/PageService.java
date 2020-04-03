@@ -1,7 +1,7 @@
 package pl.kololos.api.services;
 
 import org.springframework.stereotype.Component;
-import pl.kololos.api.models.*;
+import pl.kololos.api.models.page.*;
 import pl.kololos.api.utils.ResourceFileReader;
 
 import javax.annotation.PostConstruct;

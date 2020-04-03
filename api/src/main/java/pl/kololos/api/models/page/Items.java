@@ -1,4 +1,4 @@
-package pl.kololos.api.models;
+package pl.kololos.api.models.page;
 
 import java.util.List;
 

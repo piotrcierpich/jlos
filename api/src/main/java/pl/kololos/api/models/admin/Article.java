@@ -1,14 +1,14 @@
-package pl.kololos.api.models;
+package pl.kololos.api.models.admin;
 
 import java.time.LocalDate;
 
-public class ArticleAbstract {
+public class Article {
     private final String title;
     private final String content;
     private final String link;
     private final LocalDate publishDate;
 
-    public ArticleAbstract(String title, String content, String link, LocalDate publishDate) {
+    public Article(String title, String content, String link, LocalDate publishDate) {
         this.title = title;
         this.content = content;
         this.link = link;
