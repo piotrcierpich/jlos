@@ -15,56 +15,17 @@
                     <th>dolor sit amet</th>
                 </thead>
                 <tbody>
-                    <tr>
+                    <tr th:each="articleInfo : ${articles.articleInfos}">
                         <td>
-                            <a href=""
+                            <a th:href="@{/admin/news/{id}(id=${articleInfo.id})}" th:text="${articleInfo.title}"
                                 >Lorem ipsum dolor sit amet, consectetur</a
                             >
                         </td>
-                        <td class="publish-date">
+                        <td class="publish-date" th:text="${articleInfo.publishDate}">
                             20-03-2020
                         </td>
                     </tr>
-                    <tr>
-                        <td>
-                            <a href=""
-                                >Lorem ipsum dolor sit amet, consectetur</a
-                            >
-                        </td>
-                        <td class="publish-date">
-                            20-03-2020
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href=""
-                                >Lorem ipsum dolor sit amet, consectetur</a
-                            >
-                        </td>
-                        <td class="publish-date">
-                            20-03-2020
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href=""
-                                >Lorem ipsum dolor sit amet, consectetur</a
-                            >
-                        </td>
-                        <td class="publish-date">
-                            20-03-2020
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href=""
-                                >Lorem ipsum dolor sit amet, consectetur</a
-                            >
-                        </td>
-                        <td class="publish-date">
-                            20-03-2020
-                        </td>
-                    </tr>
+                <!-- TODO paging -->
                 </tbody>
             </table>
         </div>

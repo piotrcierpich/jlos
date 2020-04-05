@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import pl.kololos.api.models.admin.Article;
 import pl.kololos.api.models.admin.ArticleUpdate;
+import pl.kololos.api.models.admin.Articles;
 import pl.kololos.api.services.AdminService;
 
 @Controller
@@ -22,8 +23,16 @@ public class AdminController {
     }
 
     @GetMapping("/aktualnosci")
-    public String news() {
+    public String news(Model model) {
+        Articles articles = adminService.getNews(8);
+        model.addAttribute("articles", articles);
         return "adminList";
+    }
+
+    @GetMapping("/aktualnosci/{id}")
+    public String newsArticle(Model model) {
+        // TODO implement
+        return "adminArticle";
     }
 
     @GetMapping("/galeria")
