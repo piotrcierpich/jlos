@@ -36,12 +36,13 @@
                 <input
                     type="text"
                     id="publishDatetime"
-                    th:value="${{article.publishDate}}"
+                    th:value="${{article.publishDateTime}}"
                     readonly
                 />
             </div>
             <div class="content-field">
                 <button id="submitButton" type="submit">Zapisz</button>
+                <a id="admin-main" href="/admin">Powrót do strony głównej</a>
             </div>
 
             <div
@@ -80,8 +81,7 @@
                         contentType: false,
                         data: data,
                         success: function () {
-                            console.log('reloading');
-                            // location.reload();
+                            location.reload();
                         },
                     });
                 }

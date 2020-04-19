@@ -8,6 +8,7 @@ import pl.kololos.api.utils.ResourceFileReader;
 
 import javax.annotation.PostConstruct;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.Period;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -24,8 +25,8 @@ public class AdminService {
         longText = ResourceFileReader.readFileContent("/longText.txt");
     }
 
-    public Article getPageArticle(String pageKind) {
-        return new Article(pageKind, longText, "/" + pageKind, LocalDate.now());
+    public Article getArticleByKind(String pageKind) {
+        return new Article(pageKind, longText, "/" + pageKind, LocalDateTime.now());
     }
 
     public Articles getNews(int page) {
@@ -34,5 +35,9 @@ public class AdminService {
                 .map(i -> new ArticleInfo(i.toString(), "Lorem ipsum dolor sit amet, consectetur", LocalDate.now().minus(Period.ofDays(i))))
                 .collect(Collectors.toList());
         return new Articles(articleInfos);
+    }
+
+    public Article getArticleById(Integer articleId) {
+        return new Article("Wiadomosc " + articleId, longText, "/aktualnosci/" + articleId, LocalDateTime.now());
     }
 }

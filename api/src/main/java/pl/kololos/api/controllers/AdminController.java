@@ -30,9 +30,32 @@ public class AdminController {
     }
 
     @GetMapping("/aktualnosci/{id}")
-    public String newsArticle(Model model) {
-        // TODO implement
+    public String newsArticle(@PathVariable Integer id, Model model) {
+        Article article = adminService.getArticleById(id);
+        model.addAttribute(article);
         return "adminArticle";
+    }
+
+    //TODO change id to actual generated link
+    @PostMapping("/aktualnosci/{id}")
+    public String updateNewsArticle(@PathVariable Integer id, @ModelAttribute ArticleUpdate articleUpdate, Model model) {
+        Article article = adminService.getArticleById(id);
+        model.addAttribute(article);
+        return "adminArticle";
+    }
+
+    @GetMapping("/aktualnosci/nowa")
+    public String createArticle(Model model) {
+        Article article = adminService.getArticleById(0);
+        model.addAttribute(article);
+        return "adminArticle";
+    }
+
+    @PostMapping("/aktualnosci/nowa")
+    public String createArticle(@ModelAttribute ArticleUpdate articleUpdate, Model model) {
+        Article article = adminService.getArticleById(0);
+        model.addAttribute(article);
+        return "redirect:/aktualnosci/0";
     }
 
     @GetMapping("/galeria")
@@ -42,14 +65,14 @@ public class AdminController {
 
     @GetMapping("/{articleKind}")
     public String pageArticle(@PathVariable String articleKind, Model model) {
-        Article pageArticle = adminService.getPageArticle(articleKind);
-        model.addAttribute(pageArticle);
+        Article article = adminService.getArticleByKind(articleKind);
+        model.addAttribute(article);
         return "adminArticle";
     }
 
     @PostMapping("/{articleKind}")
     public String updatePageArticle(@PathVariable String articleKind, @ModelAttribute ArticleUpdate articleUpdate, Model model) {
-        Article pageArticle = adminService.getPageArticle(articleKind);
+        Article pageArticle = adminService.getArticleByKind(articleKind);
         model.addAttribute(pageArticle);
         return "adminArticle";
     }

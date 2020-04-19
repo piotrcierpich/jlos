@@ -17,7 +17,7 @@
                 <tbody>
                     <tr th:each="articleInfo : ${articles.articleInfos}">
                         <td>
-                            <a th:href="@{/admin/news/{id}(id=${articleInfo.id})}" th:text="${articleInfo.title}"
+                            <a th:href="@{/admin/aktualnosci/{id}(id=${articleInfo.id})}" th:text="${articleInfo.title}"
                                 >Lorem ipsum dolor sit amet, consectetur</a
                             >
                         </td>
@@ -25,9 +25,15 @@
                             20-03-2020
                         </td>
                     </tr>
-                <!-- TODO paging -->
                 </tbody>
             </table>
+            <div id="prev-next">
+                <a href="/admin/aktualnosci?page=2">Następne</a>
+                <a href="/admin/aktualnosci?page=1">Poprzednie</a>
+            </div>
+            <div id="new-article">
+                <a href="/admin/aktualnosci/nowa">Nowa wiadomość</a>
+            </div>
         </div>
     </body>
 </html>

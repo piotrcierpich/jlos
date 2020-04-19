@@ -9,3 +9,14 @@
 .content-field input[type="text"] {
     width: 500px;
 }
+
+#save-status {
+    /* display: block; */
+    margin-top: 5px;
+    color: #1e5d7d;
+    font-style: italic;
+}
+
+#admin-main {
+    margin: 0 15px;
+}

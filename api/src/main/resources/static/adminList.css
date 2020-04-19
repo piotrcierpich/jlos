@@ -20,3 +20,16 @@ td {
 .publish-date {
     text-align: center;
 }
+
+#prev-next {
+    margin: 0px auto;
+    width: 220px;
+}
+
+#prev-next a {
+    padding-right: 10px;
+}
+
+#new-article {
+    margin-left: 20px;    
+}
