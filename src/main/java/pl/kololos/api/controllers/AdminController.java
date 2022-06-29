@@ -1,21 +1,23 @@
 package pl.kololos.api.controllers;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import pl.kololos.api.models.admin.Article;
 import pl.kololos.api.models.admin.ArticleUpdate;
 import pl.kololos.api.models.admin.Articles;
+import pl.kololos.api.models.admin.Pagination;
 import pl.kololos.api.services.AdminService;
+import pl.kololos.api.services.ArticlesPaginationService;
 
 @Controller
+@RequiredArgsConstructor
 @RequestMapping("/admin")
 public class AdminController {
-    private AdminService adminService;
+    private final AdminService adminService;
+    private final ArticlesPaginationService articlesPaginationService;
 
-    public AdminController(AdminService adminService) {
-        this.adminService = adminService;
-    }
 
     @GetMapping()
     public String index() {
@@ -23,9 +25,12 @@ public class AdminController {
     }
 
     @GetMapping("/aktualnosci")
-    public String news(Model model) {
-        Articles articles = adminService.getNews(8);
+    public String news(@RequestParam(value = "page", required = false) Integer pageParam, Model model) {
+        int page = pageParam == null ? 0 : pageParam;
+        Articles articles = adminService.getNews(page);
         model.addAttribute("articles", articles);
+        Pagination pagination = articlesPaginationService.getForArticles(page);
+        model.addAttribute("pagination", pagination);
         return "adminList";
     }
 

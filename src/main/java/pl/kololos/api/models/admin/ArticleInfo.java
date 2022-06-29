@@ -1,27 +1,18 @@
 package pl.kololos.api.models.admin;
 
+import lombok.Getter;
+
 import java.time.LocalDate;
 
+@Getter
 public class ArticleInfo {
     private final String title;
-    private final String id;
+    private final Long id;
     private final LocalDate publishDate;
 
-    public ArticleInfo(String id, String title, LocalDate publishDate) {
+    public ArticleInfo(Long id, String title, LocalDate publishDate) {
         this.title = title;
         this.id = id;
         this.publishDate = publishDate;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public LocalDate getPublishDate() {
-        return publishDate;
-    }
-
-    public String getId() {
-        return id;
     }
 }

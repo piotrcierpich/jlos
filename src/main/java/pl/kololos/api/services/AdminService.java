@@ -1,6 +1,8 @@
 package pl.kololos.api.services;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Component;
 import pl.kololos.api.models.admin.*;
 import pl.kololos.api.repositories.ArticlesRepository;
@@ -8,11 +10,9 @@ import pl.kololos.api.utils.ResourceFileReader;
 
 import javax.annotation.PostConstruct;
 import java.time.Instant;
-import java.time.LocalDate;
-import java.time.Period;
+import java.time.ZoneId;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 @Component
 @RequiredArgsConstructor
@@ -21,8 +21,10 @@ public class AdminService {
     private String longText;
 
     private final ArticlesRepository articlesRepository;
+
     private final ArticleLink articleLink;
 
+    @SuppressWarnings("unused")
     @PostConstruct
     public void onInit() {
         shortText = ResourceFileReader.readFileContent("/shortText.txt");
@@ -34,10 +36,15 @@ public class AdminService {
     }
 
     public Articles getNews(int page) {
-        List<ArticleInfo> articleInfos = IntStream.range(0, page)
-                .boxed()
-                .map(i -> new ArticleInfo(i.toString(), "Lorem ipsum dolor sit amet, consectetur", LocalDate.now().minus(Period.ofDays(i))))
+        Page<Article> articles = articlesRepository.findAll(PageRequest.of(page, ArticlesPaginationService.PAGE_SIZE));
+        List<ArticleInfo> articleInfos = articles.get()
+                .map(i -> new ArticleInfo(i.getId(), i.getTitle(), i.getPublishDateTime().atZone(ZoneId.of("Europe/Warsaw")).toLocalDate()))
                 .collect(Collectors.toList());
+//
+//        List<ArticleInfo> articleInfos = IntStream.range(0, page)
+//                .boxed()
+//                .map(i -> new ArticleInfo(i.longValue(), "Lorem ipsum dolor sit amet, consectetur", LocalDate.now().minus(Period.ofDays(i))))
+//                .collect(Collectors.toList());
         return new Articles(articleInfos);
     }
 
