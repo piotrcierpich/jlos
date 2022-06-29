@@ -53,7 +53,7 @@ public class AdminController {
 
     @PostMapping("/aktualnosci/nowa")
     public String createArticle(@ModelAttribute ArticleUpdate articleUpdate, Model model) {
-        Article article = adminService.getArticleById(0);
+        Article article = adminService.saveArticle(articleUpdate);
         model.addAttribute(article);
         return "redirect:/aktualnosci/0";
     }

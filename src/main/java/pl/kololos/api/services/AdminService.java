@@ -1,23 +1,27 @@
 package pl.kololos.api.services;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import pl.kololos.api.models.admin.Article;
-import pl.kololos.api.models.admin.ArticleInfo;
-import pl.kololos.api.models.admin.Articles;
+import pl.kololos.api.models.admin.*;
+import pl.kololos.api.repositories.ArticlesRepository;
 import pl.kololos.api.utils.ResourceFileReader;
 
 import javax.annotation.PostConstruct;
+import java.time.Instant;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.Period;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 @Component
+@RequiredArgsConstructor
 public class AdminService {
     private String shortText;
     private String longText;
+
+    private final ArticlesRepository articlesRepository;
+    private final ArticleLink articleLink;
 
     @PostConstruct
     public void onInit() {
@@ -26,7 +30,7 @@ public class AdminService {
     }
 
     public Article getArticleByKind(String pageKind) {
-        return new Article(pageKind, longText, "/" + pageKind, LocalDateTime.now());
+        return new Article(pageKind, longText, "/" + pageKind, Instant.now());
     }
 
     public Articles getNews(int page) {
@@ -38,6 +42,12 @@ public class AdminService {
     }
 
     public Article getArticleById(Integer articleId) {
-        return new Article("Wiadomosc " + articleId, longText, "/aktualnosci/" + articleId, LocalDateTime.now());
+        return new Article("Wiadomosc " + articleId, longText, "/aktualnosci/" + articleId, Instant.now());
+    }
+
+    public Article saveArticle(ArticleUpdate articleUpdate) {
+        Article article = Article.createNew(articleUpdate, articleLink);
+        Article savedArticle = articlesRepository.save(article);
+        return savedArticle;
     }
 }

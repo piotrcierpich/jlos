@@ -1,33 +1,40 @@
 package pl.kololos.api.models.admin;
 
-import java.time.LocalDateTime;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+import javax.persistence.*;
+import java.time.Instant;
+
+@NoArgsConstructor
+@Getter
+@Setter
+@Entity
 public class Article {
-    private final String title;
-    private final String content;
-    private final String link;
-    private final LocalDateTime publishDateTime;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    private Long id;
+    private String title;
+    @Column(columnDefinition = "TEXT")
+    private String content;
+    private String link;
+    private Instant publishDateTime;
 
-    public Article(String title, String content, String link, LocalDateTime publishDateTime) {
+    public Article(String title, String content, String link, Instant publishDateTime) {
         this.title = title;
         this.content = content;
         this.link = link;
         this.publishDateTime = publishDateTime;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public String getLink() {
-        return link;
-    }
-
-    public LocalDateTime getPublishDateTime() {
-        return publishDateTime;
+    public static Article createNew(ArticleUpdate articleUpdate, ArticleLink articleLink) {
+        Article article = new Article();
+        article.content = articleUpdate.getContent();
+        article.title = articleUpdate.getTitle();
+        article.publishDateTime = Instant.now();
+        article.link = articleLink.generate(article);
+        return article;
     }
 }

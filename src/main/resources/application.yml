@@ -1,0 +1,10 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    database: mysql
+  datasource:
+    url: jdbc:mysql://localhost:3306/jlos?autoReconnect=true&serverTimezone=Europe/Warsaw&characterEncoding=utf8
+    username: jlos
+    password: pass
