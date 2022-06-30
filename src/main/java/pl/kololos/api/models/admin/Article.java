@@ -37,4 +37,9 @@ public class Article {
         article.link = articleLink.generate(article);
         return article;
     }
+
+    public void update(ArticleUpdate articleUpdate) {
+        content = articleUpdate.getContent().trim();
+        title = articleUpdate.getTitle();
+    }
 }

@@ -3,13 +3,19 @@ package pl.kololos.api.controllers;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 import pl.kololos.api.models.admin.Article;
 import pl.kololos.api.models.admin.ArticleUpdate;
 import pl.kololos.api.models.admin.Articles;
 import pl.kololos.api.models.admin.Pagination;
 import pl.kololos.api.services.AdminService;
 import pl.kololos.api.services.ArticlesPaginationService;
+
+import java.util.Optional;
+
+import static org.springframework.http.HttpStatus.NOT_FOUND;
 
 @Controller
 @RequiredArgsConstructor
@@ -35,32 +41,35 @@ public class AdminController {
     }
 
     @GetMapping("/aktualnosci/{id}")
-    public String newsArticle(@PathVariable Integer id, Model model) {
-        Article article = adminService.getArticleById(id);
-        model.addAttribute(article);
+    public String newsArticle(@PathVariable Long id, Model model) {
+        Optional<Article> article = adminService.getArticleById(id);
+        if(article.isEmpty()) {
+            throw new ResponseStatusException(NOT_FOUND, "Unable to find article");
+        }
+        model.addAttribute(article.get());
         return "adminArticle";
     }
 
     //TODO change id to actual generated link
     @PostMapping("/aktualnosci/{id}")
-    public String updateNewsArticle(@PathVariable Integer id, @ModelAttribute ArticleUpdate articleUpdate, Model model) {
-        Article article = adminService.getArticleById(id);
-        model.addAttribute(article);
+    public String updateNewsArticle(@PathVariable Long id, @ModelAttribute ArticleUpdate articleUpdate, Model model) {
+        Article updatedArticle = adminService.updateArticle(id, articleUpdate);
+        model.addAttribute(updatedArticle);
         return "adminArticle";
     }
 
     @GetMapping("/aktualnosci/nowa")
     public String createArticle(Model model) {
-        Article article = adminService.getArticleById(0);
-        model.addAttribute(article);
+        Article newArticle = new Article();
+        model.addAttribute(newArticle);
         return "adminArticle";
     }
 
     @PostMapping("/aktualnosci/nowa")
-    public String createArticle(@ModelAttribute ArticleUpdate articleUpdate, Model model) {
+    public String createArticle(@ModelAttribute ArticleUpdate articleUpdate, ModelMap model) {
         Article article = adminService.saveArticle(articleUpdate);
-        model.addAttribute(article);
-        return "redirect:/aktualnosci/0";
+        model.addAttribute(new Article());
+        return "adminArticle";
     }
 
     @GetMapping("/galeria")
