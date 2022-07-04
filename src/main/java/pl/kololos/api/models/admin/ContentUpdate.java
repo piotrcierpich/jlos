@@ -1,6 +1,6 @@
 package pl.kololos.api.models.admin;
 
-public class ArticleUpdate {
+public class ContentUpdate {
     private String title;
     private String content;
 

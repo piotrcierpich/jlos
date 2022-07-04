@@ -15,13 +15,13 @@
                     <th>dolor sit amet</th>
                 </thead>
                 <tbody>
-                    <tr th:each="articleInfo : ${articles.articleInfos}">
+                    <tr th:each="postInfo : ${posts.postInfos}">
                         <td>
-                            <a th:href="@{/admin/aktualnosci/{id}(id=${articleInfo.id})}" th:text="${articleInfo.title}"
+                            <a th:href="@{/admin/aktualnosci/{id}(id=${postInfo.id})}" th:text="${postInfo.title}"
                                 >Lorem ipsum dolor sit amet, consectetur</a
                             >
                         </td>
-                        <td class="publish-date" th:text="${articleInfo.publishDate}">
+                        <td class="publish-date" th:text="${postInfo.publishDate}">
                             20-03-2020
                         </td>
                     </tr>
@@ -31,7 +31,7 @@
                 <a th:href="@{/admin/aktualnosci(page=${pagination.next})}" th:if="${pagination.hasNext}">Następne</a>
                 <a th:href="@{/admin/aktualnosci(page=${pagination.previous})}" th:if="${pagination.hasPrevious}">Poprzednie</a>
             </div>
-            <div id="new-article">
+            <div id="new-post">
                 <a href="/admin/aktualnosci/nowa">Nowa wiadomość</a>
             </div>
         </div>

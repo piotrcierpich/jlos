@@ -15,14 +15,14 @@
         <div id="content">
             <div class="content-field">
                 <label for="title">Tytuł:</label>
-                <input type="text" id="title" th:value="${article.title}" />
+                <input type="text" id="title" th:value="${post.title}" />
             </div>
             <div class="content-field">
                 <label for="link">Link:</label>
                 <input
                     type="text"
                     id="link"
-                    th:value="${article.link}"
+                    th:value="${post.link}"
                     readonly
                 />
             </div>
@@ -36,7 +36,7 @@
                 <input
                     type="text"
                     id="publishDatetime"
-                    th:value="${{article.publishDateTime}}"
+                    th:value="${{post.publishDateTime}}"
                     readonly
                 />
             </div>
@@ -47,7 +47,7 @@
 
             <div
                 id="existingContent"
-                th:text="${article.content}"
+                th:text="${post.content}"
                 style="display: none;"
             />
 

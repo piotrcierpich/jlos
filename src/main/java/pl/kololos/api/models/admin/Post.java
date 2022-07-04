@@ -11,7 +11,7 @@ import java.time.Instant;
 @Getter
 @Setter
 @Entity
-public class Article {
+public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
@@ -22,24 +22,24 @@ public class Article {
     private String link;
     private Instant publishDateTime;
 
-    public Article(String title, String content, String link, Instant publishDateTime) {
+    public Post(String title, String content, String link, Instant publishDateTime) {
         this.title = title;
         this.content = content;
         this.link = link;
         this.publishDateTime = publishDateTime;
     }
 
-    public static Article createNew(ArticleUpdate articleUpdate, ArticleLink articleLink) {
-        Article article = new Article();
-        article.content = articleUpdate.getContent();
-        article.title = articleUpdate.getTitle();
-        article.publishDateTime = Instant.now();
-        article.link = articleLink.generate(article);
-        return article;
+    public static Post createNew(ContentUpdate contentUpdate, ArticleLink articleLink) {
+        Post post = new Post();
+        post.content = contentUpdate.getContent();
+        post.title = contentUpdate.getTitle();
+        post.publishDateTime = Instant.now();
+        post.link = articleLink.generate(post);
+        return post;
     }
 
-    public void update(ArticleUpdate articleUpdate) {
-        content = articleUpdate.getContent().trim();
-        title = articleUpdate.getTitle();
+    public void update(ContentUpdate contentUpdate) {
+        content = contentUpdate.getContent().trim();
+        title = contentUpdate.getTitle();
     }
 }

@@ -4,7 +4,7 @@
         <meta charset="UTF-8" />
         <title>Koło łowieckie Łoś</title>
         <link rel="stylesheet" type="text/css" href="mainStyles.css" />
-        <link rel="stylesheet" type="text/css" href="article.css" />
+        <link rel="stylesheet" type="text/css" href="post.css" />
         <link rel="stylesheet" type="text/css" href="ribbon.css" />
         <link rel="stylesheet" type="text/css" href="list.css" />
         <link rel="stylesheet" type="text/css" href="paginable.css" />
@@ -20,9 +20,9 @@
                 </div>
                 <ul>
                     <li th:each="item : ${items.itemAbstracts}">
-                        <article>
+                        <post>
                             <header><a th:href="@{/galeria/{id}(id=${item.link})}" th:text="${item.title}">Lorem ipsum dolor sit amet, consectetur adipiscing elit</a></header>
-                        </article>
+                        </post>
                     </li>
                 </ul>    
                 <div id="other-page-link">

@@ -6,7 +6,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ResponseStatusException;
 import pl.kololos.api.models.admin.*;
-import pl.kololos.api.repositories.ArticlesRepository;
+import pl.kololos.api.repositories.PostsRepository;
 import pl.kololos.api.utils.ResourceFileReader;
 
 import javax.annotation.PostConstruct;
@@ -24,7 +24,7 @@ public class AdminService {
     private String shortText;
     private String longText;
 
-    private final ArticlesRepository articlesRepository;
+    private final PostsRepository postsRepository;
 
     private final ArticleLink articleLink;
 
@@ -35,35 +35,35 @@ public class AdminService {
         longText = ResourceFileReader.readFileContent("/longText.txt");
     }
 
-    public Article getArticleByKind(String pageKind) {
-        return new Article(pageKind, longText, "/" + pageKind, Instant.now());
+    public Post getArticleByKind(String pageKind) {
+        return new Post(pageKind, longText, "/" + pageKind, Instant.now());
     }
 
-    public Articles getNews(int page) {
-        Page<Article> articles = articlesRepository.findAll(PageRequest.of(page, ArticlesPaginationService.PAGE_SIZE));
-        List<ArticleInfo> articleInfos = articles.get()
-                .map(i -> new ArticleInfo(i.getId(), i.getTitle(), i.getPublishDateTime().atZone(ZoneId.of("Europe/Warsaw")).toLocalDate()))
+    public Posts getPosts(int page) {
+        Page<Post> posts = postsRepository.findAll(PageRequest.of(page, PostsPaginationService.PAGE_SIZE));
+        List<PostInfo> postInfos = posts.get()
+                .map(i -> new PostInfo(i.getId(), i.getTitle(), i.getPublishDateTime().atZone(ZoneId.of("Europe/Warsaw")).toLocalDate()))
                 .collect(Collectors.toList());
-        return new Articles(articleInfos);
+        return new Posts(postInfos);
     }
 
-    public Optional<Article> getArticleById(Long articleId) {
-        return articlesRepository.findById(articleId);
+    public Optional<Post> getPostById(Long postId) {
+        return postsRepository.findById(postId);
     }
 
-    public Article saveArticle(ArticleUpdate articleUpdate) {
-        Article article = Article.createNew(articleUpdate, articleLink);
-        Article savedArticle = articlesRepository.save(article);
-        return savedArticle;
+    public Post savePost(ContentUpdate contentUpdate) {
+        Post post = Post.createNew(contentUpdate, articleLink);
+        Post savedPost = postsRepository.save(post);
+        return savedPost;
     }
 
-    public Article updateArticle(Long id, ArticleUpdate articleUpdate) {
-        Optional<Article> articleIfFound = getArticleById(id);
-        if (articleIfFound.isEmpty()) {
-            throw new ResponseStatusException(NOT_FOUND, "Unable to find article");
+    public Post updatePost(Long id, ContentUpdate contentUpdate) {
+        Optional<Post> postIfFound = getPostById(id);
+        if (postIfFound.isEmpty()) {
+            throw new ResponseStatusException(NOT_FOUND, "Unable to find post");
         }
-        Article articleToUpdate = articleIfFound.get();
-        articleToUpdate.update(articleUpdate);
-        return articlesRepository.save(articleToUpdate);
+        Post postToUpdate = postIfFound.get();
+        postToUpdate.update(contentUpdate);
+        return postsRepository.save(postToUpdate);
     }
 }

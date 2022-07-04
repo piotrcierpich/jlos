@@ -5,12 +5,12 @@ import lombok.Getter;
 import java.time.LocalDate;
 
 @Getter
-public class ArticleInfo {
+public class PostInfo {
     private final String title;
     private final Long id;
     private final LocalDate publishDate;
 
-    public ArticleInfo(Long id, String title, LocalDate publishDate) {
+    public PostInfo(Long id, String title, LocalDate publishDate) {
         this.title = title;
         this.id = id;
         this.publishDate = publishDate;

@@ -4,17 +4,17 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import pl.kololos.api.models.admin.Pagination;
-import pl.kololos.api.repositories.ArticlesRepository;
+import pl.kololos.api.repositories.PostsRepository;
 
 @Service
 @RequiredArgsConstructor
-public class ArticlesPaginationService {
-    private final ArticlesRepository articlesRepository;
+public class PostsPaginationService {
+    private final PostsRepository postsRepository;
     public static final int PAGE_SIZE = 30;
     private final static Pagination SINGLE_PAGE = Pagination.builder().hasNext(false).hasPrevious(false).build();
 
     public Pagination getForArticles(int currentPage) {
-        int totalPages = articlesRepository.findAll(PageRequest.of(currentPage, PAGE_SIZE)).getTotalPages();
+        int totalPages = postsRepository.findAll(PageRequest.of(currentPage, PAGE_SIZE)).getTotalPages();
         boolean noRecordsOrSinglePage = totalPages == 0 || totalPages == 1;
         if (noRecordsOrSinglePage) {
             return SINGLE_PAGE;

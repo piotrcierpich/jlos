@@ -2,14 +2,14 @@ package pl.kololos.api.models.admin;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import pl.kololos.api.repositories.ArticlesRepository;
+import pl.kololos.api.repositories.PostsRepository;
 
 @Service
 @RequiredArgsConstructor
 public class ArticleLink {
-    private final ArticlesRepository articlesRepository;
+    private final PostsRepository postsRepository;
 
-    public String generate(Article article) {
+    public String generate(Post post) {
         return "abc";
     }
 }
