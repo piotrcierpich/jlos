@@ -20,9 +20,9 @@
                 </div>
                 <ul>
                     <li th:each="item : ${items.itemAbstracts}">
-                        <post>
+                        <article>
                             <header><a th:href="@{/galeria/{id}(id=${item.link})}" th:text="${item.title}">Lorem ipsum dolor sit amet, consectetur adipiscing elit</a></header>
-                        </post>
+                        </article>
                     </li>
                 </ul>    
                 <div id="other-page-link">

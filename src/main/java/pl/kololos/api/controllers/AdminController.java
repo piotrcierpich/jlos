@@ -31,7 +31,7 @@ public class AdminController {
     public String news(@RequestParam(value = "page", required = false) Integer pageParam, Model model) {
         int page = pageParam == null ? 0 : pageParam;
         Posts posts = adminService.getPosts(page);
-        model.addAttribute("posts", posts);
+        model.addAttribute("articles", posts);
         Pagination pagination = postsPaginationService.getForArticles(page);
         model.addAttribute("pagination", pagination);
         return "adminList";
