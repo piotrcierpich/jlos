@@ -6,10 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
-import pl.kololos.api.models.admin.Post;
-import pl.kololos.api.models.admin.ContentUpdate;
-import pl.kololos.api.models.admin.Posts;
-import pl.kololos.api.models.admin.Pagination;
+import pl.kololos.api.models.admin.*;
 import pl.kololos.api.services.AdminService;
 import pl.kololos.api.services.PostsPaginationService;
 
@@ -42,11 +39,11 @@ public class AdminController {
 
     @GetMapping("/aktualnosci/{id}")
     public String newsArticle(@PathVariable Long id, Model model) {
-        Optional<Post> article = adminService.getPostById(id);
-        if(article.isEmpty()) {
+        Optional<Post> post = adminService.getPostById(id);
+        if(post.isEmpty()) {
             throw new ResponseStatusException(NOT_FOUND, "Unable to find article");
         }
-        model.addAttribute(article.get());
+        model.addAttribute(post.get());
         return "adminArticle";
     }
 
@@ -79,15 +76,18 @@ public class AdminController {
 
     @GetMapping("/{articleKind}")
     public String pageArticle(@PathVariable String articleKind, Model model) {
-        Post post = adminService.getArticleByKind(articleKind);
-        model.addAttribute(post);
+        Optional<Page> page = adminService.getPageByKind(articleKind);
+        if(page.isEmpty()) {
+            throw new ResponseStatusException(NOT_FOUND, "Unable to find page");
+        }
+        model.addAttribute("post", page.get());
         return "adminArticle";
     }
 
     @PostMapping("/{articleKind}")
     public String updatePageArticle(@PathVariable String articleKind, @ModelAttribute ContentUpdate contentUpdate, Model model) {
-        Post pagePost = adminService.getArticleByKind(articleKind);
-        model.addAttribute(pagePost);
+        Page page = adminService.updatePage(articleKind, contentUpdate);
+        model.addAttribute("post", page);
         return "adminArticle";
     }
 }

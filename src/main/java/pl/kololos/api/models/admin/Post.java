@@ -41,5 +41,6 @@ public class Post {
     public void update(ContentUpdate contentUpdate) {
         content = contentUpdate.getContent().trim();
         title = contentUpdate.getTitle();
+        publishDateTime = Instant.now();
     }
 }

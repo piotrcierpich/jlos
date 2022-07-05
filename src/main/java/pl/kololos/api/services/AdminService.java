@@ -6,11 +6,11 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ResponseStatusException;
 import pl.kololos.api.models.admin.*;
+import pl.kololos.api.repositories.PagesRepository;
 import pl.kololos.api.repositories.PostsRepository;
 import pl.kololos.api.utils.ResourceFileReader;
 
 import javax.annotation.PostConstruct;
-import java.time.Instant;
 import java.time.ZoneId;
 import java.util.List;
 import java.util.Optional;
@@ -25,6 +25,7 @@ public class AdminService {
     private String longText;
 
     private final PostsRepository postsRepository;
+    private final PagesRepository pagesRepository;
 
     private final ArticleLink articleLink;
 
@@ -35,8 +36,8 @@ public class AdminService {
         longText = ResourceFileReader.readFileContent("/longText.txt");
     }
 
-    public Post getArticleByKind(String pageKind) {
-        return new Post(pageKind, longText, "/" + pageKind, Instant.now());
+    public Optional<pl.kololos.api.models.admin.Page> getPageByKind(String pageKind) {
+        return pagesRepository.findByKind(pageKind);
     }
 
     public Posts getPosts(int page) {
@@ -65,5 +66,15 @@ public class AdminService {
         Post postToUpdate = postIfFound.get();
         postToUpdate.update(contentUpdate);
         return postsRepository.save(postToUpdate);
+    }
+
+    public pl.kololos.api.models.admin.Page updatePage(String pageKind, ContentUpdate contentUpdate) {
+        Optional<pl.kololos.api.models.admin.Page> pageByKind = getPageByKind(pageKind);
+        if (pageByKind.isEmpty()) {
+            throw new ResponseStatusException(NOT_FOUND, "Unable to find post");
+        }
+        pl.kololos.api.models.admin.Page pageToUpdate = pageByKind.get();
+        pageToUpdate.update(contentUpdate);
+        return pagesRepository.save(pageToUpdate);
     }
 }
