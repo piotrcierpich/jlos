@@ -1,30 +1,34 @@
 package pl.kololos.api.services;
 
+import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Component;
+import org.springframework.web.server.ResponseStatusException;
+import pl.kololos.api.models.admin.Page;
 import pl.kololos.api.models.page.*;
-import pl.kololos.api.utils.ResourceFileReader;
+import pl.kololos.api.repositories.PagesRepository;
+import pl.kololos.api.repositories.PostsRepository;
 
-import javax.annotation.PostConstruct;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.IntStream;
+import java.util.Optional;
 
 import static java.util.stream.Collectors.toList;
+import static org.springframework.http.HttpStatus.NOT_FOUND;
 
 @Component
+@RequiredArgsConstructor
 public class PageService {
-    private String shortText;
-    private String longText;
-
-    @PostConstruct
-    public void onInit() {
-        shortText = ResourceFileReader.readFileContent("/shortText.txt");
-        longText = ResourceFileReader.readFileContent("/longText.txt");
-    }
+    private final PagesRepository pagesRepository;
+    private final PostsRepository postsRepository;
 
     public Index getIndex() {
-        return new Index(longText, getLatestAbstracts(3));
+        Optional<Page> mainPage = pagesRepository.findByKind("glowna");
+        if (mainPage.isEmpty()) {
+            throw new ResponseStatusException(NOT_FOUND, "Unable to find page");
+        }
+        Page main = mainPage.get();
+        return new Index(main.getContent(), getLatestAbstracts(3));
     }
 
     public Articles getArticles() {
@@ -32,10 +36,10 @@ public class PageService {
     }
 
     private List<ArticleAbstract> getLatestAbstracts(int count) {
-        return IntStream.range(0, count)
-                .boxed()
-                .map(i -> i + 1)
-                .map(i -> new ArticleAbstract("Interesting subject " + i, shortText, "123", LocalDate.of(2020, 3, 20)))
+        return postsRepository
+                .findByOrderByPublishDateTimeDesc(PageRequest.of(0, count))
+                .stream()
+                .map(ArticleAbstract::fromPost)
                 .collect(toList());
     }
 

@@ -8,10 +8,10 @@ import org.springframework.web.server.ResponseStatusException;
 import pl.kololos.api.models.admin.*;
 import pl.kololos.api.repositories.PagesRepository;
 import pl.kololos.api.repositories.PostsRepository;
+import pl.kololos.api.utils.Locals;
 import pl.kololos.api.utils.ResourceFileReader;
 
 import javax.annotation.PostConstruct;
-import java.time.ZoneId;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -43,7 +43,7 @@ public class AdminService {
     public Posts getPosts(int page) {
         Page<Post> posts = postsRepository.findAll(PageRequest.of(page, PostsPaginationService.PAGE_SIZE));
         List<PostInfo> postInfos = posts.get()
-                .map(i -> new PostInfo(i.getId(), i.getTitle(), i.getPublishDateTime().atZone(ZoneId.of("Europe/Warsaw")).toLocalDate()))
+                .map(i -> new PostInfo(i.getId(), i.getTitle(), i.getPublishDateTime().atZone(Locals.ZONE_ID).toLocalDate()))
                 .collect(Collectors.toList());
         return new Posts(postInfos);
     }
