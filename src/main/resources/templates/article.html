@@ -13,10 +13,10 @@
             <div id="banner" th:replace="logoAndNav" />
             <div class="page-content">
                 <div class="ribbon-edge-topleft"></div>
-                <div class="title">
+                <div class="title" th:text="${article.title}">
                     Lorem ipsum dolor sit amet
                 </div>
-                <p>
+                <p th:text="${article.content}">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
                     do eiusmod tempor incididunt ut labore et dolore magna
                     aliqua. Elementum integer enim neque volutpat. Blandit

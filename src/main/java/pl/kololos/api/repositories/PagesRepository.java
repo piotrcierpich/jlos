@@ -1,7 +1,7 @@
 package pl.kololos.api.repositories;
 
 import org.springframework.data.repository.CrudRepository;
-import pl.kololos.api.models.admin.Page;
+import pl.kololos.api.models.Page;
 
 import java.util.Optional;
 

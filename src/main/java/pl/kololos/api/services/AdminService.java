@@ -36,7 +36,7 @@ public class AdminService {
         longText = ResourceFileReader.readFileContent("/longText.txt");
     }
 
-    public Optional<pl.kololos.api.models.admin.Page> getPageByKind(String pageKind) {
+    public Optional<pl.kololos.api.models.Page> getPageByKind(String pageKind) {
         return pagesRepository.findByKind(pageKind);
     }
 
@@ -68,12 +68,12 @@ public class AdminService {
         return postsRepository.save(postToUpdate);
     }
 
-    public pl.kololos.api.models.admin.Page updatePage(String pageKind, ContentUpdate contentUpdate) {
-        Optional<pl.kololos.api.models.admin.Page> pageByKind = getPageByKind(pageKind);
+    public pl.kololos.api.models.Page updatePage(String pageKind, ContentUpdate contentUpdate) {
+        Optional<pl.kololos.api.models.Page> pageByKind = getPageByKind(pageKind);
         if (pageByKind.isEmpty()) {
             throw new ResponseStatusException(NOT_FOUND, "Unable to find post");
         }
-        pl.kololos.api.models.admin.Page pageToUpdate = pageByKind.get();
+        pl.kololos.api.models.Page pageToUpdate = pageByKind.get();
         pageToUpdate.update(contentUpdate);
         return pagesRepository.save(pageToUpdate);
     }

@@ -2,11 +2,10 @@ package pl.kololos.api.repositories;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import pl.kololos.api.models.admin.Page;
+import pl.kololos.api.models.Page;
 import pl.kololos.api.models.admin.PageKind;
 
 import javax.annotation.PostConstruct;
-import java.util.Locale;
 import java.util.Optional;
 
 @Service

@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import pl.kololos.api.models.Page;
 import pl.kololos.api.services.PageService;
 
 @Controller
@@ -33,12 +34,16 @@ public class IndexController {
     }
 
     @GetMapping("/uchwaly")
-    public String resolutions() {
+    public String resolutions(Model model) {
+        Page resolutions = pageService.getPageByKind("uchwaly");
+        model.addAttribute("article", resolutions);
         return "article";
     }
 
     @GetMapping("/historia")
-    public String history() {
+    public String history(Model model) {
+        Page history = pageService.getPageByKind("historia");
+        model.addAttribute("article", history);
         return "article";
     }
 
@@ -49,7 +54,9 @@ public class IndexController {
     }
 
     @GetMapping("/kontakt")
-    public String contact() {
+    public String contact(Model model) {
+        Page contact = pageService.getPageByKind("kontakt");
+        model.addAttribute("article", contact);
         return "article";
     }
 

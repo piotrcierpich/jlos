@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ResponseStatusException;
-import pl.kololos.api.models.admin.Page;
+import pl.kololos.api.models.Page;
 import pl.kololos.api.models.page.*;
 import pl.kololos.api.repositories.PagesRepository;
 import pl.kololos.api.repositories.PostsRepository;
@@ -58,5 +58,10 @@ public class PageService {
                 : null;
         Integer previousPage = hasPrevious ? page - 1 : null;
         return new Items("Galeria", itemAbstracts, hasNext, hasPrevious, nextPage, previousPage);
+    }
+
+    public Page getPageByKind(String pageKind) {
+        Optional<Page> page = pagesRepository.findByKind(pageKind);
+        return page.orElseThrow(() -> new ResponseStatusException(NOT_FOUND, "Unable to find page"));
     }
 }

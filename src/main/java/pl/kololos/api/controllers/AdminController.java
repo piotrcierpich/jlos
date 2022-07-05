@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+import pl.kololos.api.models.Page;
 import pl.kololos.api.models.admin.*;
 import pl.kololos.api.services.AdminService;
 import pl.kololos.api.services.PostsPaginationService;

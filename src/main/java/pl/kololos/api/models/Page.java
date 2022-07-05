@@ -1,6 +1,8 @@
-package pl.kololos.api.models.admin;
+package pl.kololos.api.models;
 
 import lombok.Getter;
+import pl.kololos.api.models.admin.ContentUpdate;
+import pl.kololos.api.models.admin.PageKind;
 
 import javax.persistence.*;
 import java.time.Instant;
