@@ -27,12 +27,6 @@ public class IndexController {
         return "index";
     }
 
-    @GetMapping("/aktualnosci")
-    public String articles(Model model) {
-        model.addAttribute("articles", pageService.getArticles());
-        return "listFull";
-    }
-
     @GetMapping("/uchwaly")
     public String resolutions(Model model) {
         Page resolutions = pageService.getPageByKind("uchwaly");

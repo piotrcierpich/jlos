@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.server.ResponseStatusException;
 import pl.kololos.api.models.admin.*;
 import pl.kololos.api.repositories.PagesRepository;
-import pl.kololos.api.repositories.PostsRepository;
+import pl.kololos.api.repositories.PostsPageableRepository;
 import pl.kololos.api.utils.Locals;
 import pl.kololos.api.utils.ResourceFileReader;
 
@@ -24,7 +24,7 @@ public class AdminService {
     private String shortText;
     private String longText;
 
-    private final PostsRepository postsRepository;
+    private final PostsPageableRepository postsPageableRepository;
     private final PagesRepository pagesRepository;
 
     private final ArticleLink articleLink;
@@ -41,7 +41,7 @@ public class AdminService {
     }
 
     public Posts getPosts(int page) {
-        Page<Post> posts = postsRepository.findAll(PageRequest.of(page, PostsPaginationService.PAGE_SIZE));
+        Page<Post> posts = postsPageableRepository.findAll(PageRequest.of(page, PostsPaginationService.PAGE_SIZE));
         List<PostInfo> postInfos = posts.get()
                 .map(i -> new PostInfo(i.getId(), i.getTitle(), i.getPublishDateTime().atZone(Locals.ZONE_ID).toLocalDate()))
                 .collect(Collectors.toList());
@@ -49,12 +49,12 @@ public class AdminService {
     }
 
     public Optional<Post> getPostById(Long postId) {
-        return postsRepository.findById(postId);
+        return postsPageableRepository.findById(postId);
     }
 
     public Post savePost(ContentUpdate contentUpdate) {
         Post post = Post.createNew(contentUpdate, articleLink);
-        Post savedPost = postsRepository.save(post);
+        Post savedPost = postsPageableRepository.save(post);
         return savedPost;
     }
 
@@ -65,7 +65,7 @@ public class AdminService {
         }
         Post postToUpdate = postIfFound.get();
         postToUpdate.update(contentUpdate);
-        return postsRepository.save(postToUpdate);
+        return postsPageableRepository.save(postToUpdate);
     }
 
     public pl.kololos.api.models.Page updatePage(String pageKind, ContentUpdate contentUpdate) {

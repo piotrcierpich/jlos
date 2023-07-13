@@ -2,12 +2,15 @@ package pl.kololos.api.services;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ResponseStatusException;
 import pl.kololos.api.models.Page;
+import pl.kololos.api.models.admin.Post;
 import pl.kololos.api.models.page.*;
 import pl.kololos.api.repositories.PagesRepository;
 import pl.kololos.api.repositories.PostsRepository;
+import pl.kololos.api.repositories.PostsPageableRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +23,7 @@ import static org.springframework.http.HttpStatus.NOT_FOUND;
 @RequiredArgsConstructor
 public class PageService {
     private final PagesRepository pagesRepository;
+    private final PostsPageableRepository postsPageableRepository;
     private final PostsRepository postsRepository;
 
     public Index getIndex() {
@@ -36,7 +40,7 @@ public class PageService {
     }
 
     private List<ArticleAbstract> getLatestAbstracts(int count) {
-        return postsRepository
+        return postsPageableRepository
                 .findByOrderByPublishDateTimeDesc(PageRequest.of(0, count))
                 .stream()
                 .map(ArticleAbstract::fromPost)
@@ -63,5 +67,10 @@ public class PageService {
     public Page getPageByKind(String pageKind) {
         Optional<Page> page = pagesRepository.findByKind(pageKind);
         return page.orElseThrow(() -> new ResponseStatusException(NOT_FOUND, "Unable to find page"));
+    }
+
+    public Article getArticleByLink(String link) {
+        Post postByLink = postsRepository.findByLink(link);
+        return Article.fromPost(postByLink);
     }
 }
