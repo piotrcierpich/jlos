@@ -3,6 +3,7 @@ package pl.kololos.api.models.admin;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import pl.kololos.api.utils.NormalizeLink;
 
 import javax.persistence.*;
 import java.time.Instant;
@@ -29,12 +30,12 @@ public class Post {
         this.publishDateTime = publishDateTime;
     }
 
-    public static Post createNew(ContentUpdate contentUpdate, ArticleLink articleLink) {
+    public static Post createNew(ContentUpdate contentUpdate) {
         Post post = new Post();
         post.content = contentUpdate.getContent();
         post.title = contentUpdate.getTitle();
         post.publishDateTime = Instant.now();
-        post.link = articleLink.generate(post);
+        post.link = NormalizeLink.execute(post.getTitle());
         return post;
     }
 

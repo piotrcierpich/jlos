@@ -12,12 +12,12 @@
             <table>
                 <thead>
                     <th>Lorem ipsum</th>
-                    <th>dolor sit amet</th>
+                    <th>dolor sit</th>
                 </thead>
                 <tbody>
                     <tr th:each="postInfo : ${articles.postInfos}">
                         <td>
-                            <a th:href="@{/admin/aktualnosci/{id}(id=${postInfo.id})}" th:text="${postInfo.title}"
+                            <a th:href="@{{path}/{id}(path=${articles.path},id=${postInfo.id})}" th:text="${postInfo.title}"
                                 >Lorem ipsum dolor sit amet, consectetur</a
                             >
                         </td>
@@ -28,11 +28,11 @@
                 </tbody>
             </table>
             <div id="prev-next">
-                <a th:href="@{/admin/aktualnosci(page=${pagination.next})}" th:if="${pagination.hasNext}">Następne</a>
-                <a th:href="@{/admin/aktualnosci(page=${pagination.previous})}" th:if="${pagination.hasPrevious}">Poprzednie</a>
+                <a th:href="@{{path}?page={page}(path=${articles.path},page=${pagination.next})}" th:if="${pagination.hasNext}">Następne</a>
+                <a th:href="@{{path}?page={page}(path=${articles.path},page=${pagination.previous})}" th:if="${pagination.hasPrevious}">Poprzednie</a>
             </div>
             <div id="new-article">
-                <a href="/admin/aktualnosci/nowa">Nowa wiadomość</a>
+                <a th:href="@{{path}/nowa(path=${articles.path})}">Nowa</a>
             </div>
         </div>
     </body>

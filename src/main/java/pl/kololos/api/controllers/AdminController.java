@@ -71,8 +71,26 @@ public class AdminController {
     }
 
     @GetMapping("/galeria")
-    public String gallery() {
+    public String gallery(@RequestParam(value = "page", required = false) Integer pageParam, Model model) {
+        int page = pageParam == null ? 0 : pageParam;
+        Posts posts = adminService.getGalleries(page);
+        model.addAttribute("articles", posts);
+        Pagination pagination = postsPaginationService.getForArticles(page);
+        model.addAttribute("pagination", pagination);
         return "adminList";
+    }
+
+    @GetMapping("/galeria/nowa")
+    public String createGallery(Model model) {
+        Post newPost = new Post();
+        model.addAttribute(newPost);
+        return "adminGalleryNew";
+    }
+
+    @PostMapping("/galeria/nowa")
+    public String createGallery(@ModelAttribute GalleryUpdate galleryUpdate, ModelMap model) {
+        adminService.saveGallery(galleryUpdate);
+        return "redirect:/admin/galeria";
     }
 
     @GetMapping("/{articleKind}")
