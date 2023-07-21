@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Koło łowieckie Łoś</title>
+        <link rel="stylesheet" type="text/css" href="/admin.css" />
+        <link rel="stylesheet" type="text/css" href="/adminList.css" />
+    </head>
+    <body>
+        <div id="nav" th:replace="adminNav" />
+        <div id="content">
+            <h3 th:text="${gallery.name}"></h3>
+            <table>
+                <thead>
+                    <th>Zdjęcie</th>
+                </thead>
+                <tbody>
+                    <tr th:each="image : ${gallery.images}">
+                        <td>
+                            <a th:href="@{{path}/{id}(path=${gallery.path},id=${image.id})}" th:text="${image.fileName}"
+                                >Zdjęcie.png</a
+                            >
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div>
+                <form method="POST" enctype="multipart/form-data" th:action="@{${gallery.path}}">
+                    <table>
+                        <tr><td>Zdjęcia do dodania:</td><td><input type="file" name="file"  /></td></tr>
+                    </table>
+                    <input type="submit" value="Wyślij" />
+                </form>
+            </div>
+        </div>
+    </body>
+</html>

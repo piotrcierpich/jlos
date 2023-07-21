@@ -8,3 +8,8 @@ spring:
     url: jdbc:mysql://localhost:3306/jlos?autoReconnect=true&serverTimezone=Europe/Warsaw&characterEncoding=utf8
     username: jlos
     password: pass123$
+  servlet:
+    multipart:
+      max-request-size: 12MB
+      max-file-size: 12MB
+

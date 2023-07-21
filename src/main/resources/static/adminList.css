@@ -5,6 +5,18 @@
     border-spacing: 0px;
 }
 
+#content form {
+    margin: 0px auto;
+    padding: 20px 5px;
+    width: 85%;
+    border-spacing: 0px;
+}
+
+#content form input[type="submit"] {
+    padding: 5px 10px;
+    margin: 0px 70px;
+}
+
 #content table th {
     text-align: center;
     padding: 5px 10px;

@@ -14,6 +14,7 @@ import pl.kololos.api.utils.Locals;
 import pl.kololos.api.utils.ResourceFileReader;
 
 import javax.annotation.PostConstruct;
+import javax.imageio.stream.ImageInputStream;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -82,7 +83,7 @@ public class AdminService {
     public Posts getGalleries(int page) {
         Page<Gallery> galleries = galleriesRepository.findAll(PageRequest.of(page, PostsPaginationService.PAGE_SIZE));
         List<PostInfo> postInfos = galleries.get()
-                .map(i -> new PostInfo(i.getId(), i.getGalleryName(), i.getPublishDateTime().atZone(Locals.ZONE_ID).toLocalDate()))
+                .map(i -> new PostInfo(i.getId(), i.getName(), i.getPublishDateTime().atZone(Locals.ZONE_ID).toLocalDate()))
                 .collect(Collectors.toList());
         return Posts.galleries(postInfos);
     }
@@ -91,5 +92,10 @@ public class AdminService {
         Gallery gallery = Gallery.createNew(galleryUpdate);
         galleriesRepository.save(gallery);
         return gallery;
+    }
+
+    public GalleryInfo getGalleryById(Long id) {
+        Gallery gallery = galleriesRepository.findById(id).orElseThrow();
+        return GalleryInfo.forGallery(gallery);
     }
 }

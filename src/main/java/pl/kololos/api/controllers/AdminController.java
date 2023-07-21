@@ -5,7 +5,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import pl.kololos.api.models.Gallery;
 import pl.kololos.api.models.Page;
 import pl.kololos.api.models.admin.*;
 import pl.kololos.api.services.AdminService;
@@ -91,6 +94,26 @@ public class AdminController {
     public String createGallery(@ModelAttribute GalleryUpdate galleryUpdate, ModelMap model) {
         adminService.saveGallery(galleryUpdate);
         return "redirect:/admin/galeria";
+    }
+
+    @GetMapping("/galeria/{id}")
+    public String galleryById(
+            @PathVariable Long id,
+            Model model) {
+        GalleryInfo galleryById = adminService.getGalleryById(id);
+        model.addAttribute("gallery", galleryById);
+        return "adminGalleryImagesList";
+    }
+
+    @PostMapping("/galeria/{id}")
+    public String galleryFileUpload(
+            @PathVariable Long id,
+            @RequestParam("file") MultipartFile file,
+            RedirectAttributes redirectAttributes) {
+//        storageService.store(file);
+//        redirectAttributes.addFlashAttribute("message",
+//                "You successfully uploaded " + file.getOriginalFilename() + "!");
+        return "redirect:/admin/galeria/" + id;
     }
 
     @GetMapping("/{articleKind}")
